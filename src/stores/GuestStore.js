@@ -3,23 +3,27 @@ import GuestModel from '../models/GuestModel'
 
 
 export default class GuestStore {
-	@observable guests = [];
+	@observable _guests = [];
+
+	@computed get guests() {
+		return this._guests.slice();
+	}
 
 	@computed get guestCount() {
-		return this.guests.length;
+		return this._guests.length;
 	}
 
 	addGuest (guest) {
-		this.guests.push(new GuestModel(this, guest));
+		this._guests.push(new GuestModel(this, guest));
 	}
 
 	toJS() {
-		return this.guests.map(guest => guest.toJS());
+		return this._guests.map(guest => guest.toJS());
 	}
 
 	static fromJS(array) {
 		const store = new GuestStore();
-		store.guests = array.map(item => GuestModel.fromJS(guestStore, item));
+		store._guests = array.map(item => GuestModel.fromJS(guestStore, item));
 		return store;
 	}
 }

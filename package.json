@@ -1,15 +1,16 @@
 {
-  "name": "react-routing-mobx-bootstrap-boilerplate",
+  "name": "finance",
   "version": "0.0.1",
-  "description": "Webpack-react-router-mobx-bootstrap-css-modules",
+  "description": "Financial management system",
   "main": "''",
   "scripts": {
     "build": "NODE_ENV=production webpack -p --config webpack.production.config.js --progress --profile --colors",
-    "dev": "webpack-dev-server --progress --profile --colors --hot"
+    "dev": "webpack-dev-server --progress --profile --colors --hot --history-api-fallback",
+    "start": "start http://localhost:8080/ & npm run dev"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/tranqy/react-routing-mobx-bootstrap-boilerplate"
+    "url": ""
   },
   "keywords": [
     "React",
@@ -18,12 +19,12 @@
     "Starter",
     "template"
   ],
-  "author": "Aaron Junod",
+  "author": "Dominik Smejkal",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/tranqy/react-routing-mobx-bootstrap-boilerplate"
+    "url": ""
   },
-  "homepage": "https://github.com/tranqy/react-routing-mobx-bootstrap-boilerplate#readme",
+  "homepage": "",
   "dependencies": {
     "mobx": "^2.3.5",
     "mobx-react": "^3.5.0",
@@ -33,6 +34,7 @@
     "react-router": "^2.5.2"
   },
   "devDependencies": {
+    "@types/react": "^15.6.0",
     "babel-core": "6.7.7",
     "babel-loader": "6.2.4",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
@@ -46,7 +48,7 @@
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "0.8.5",
     "json-loader": "^0.5.4",
-    "json5": "^0.5.0",
+    "json5": "^0.5.1",
     "json5-loader": "^0.6.0",
     "jsx-loader": "^0.13.2",
     "node-libs-browser": "1.0.0",

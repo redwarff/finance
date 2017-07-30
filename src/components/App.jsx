@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom'
 import DevTool from 'mobx-react-devtools'
 import {observer} from 'mobx-react'
 
-import About from './About'
+import About from 'components/About'
 import NavigationBar from './NavigationBar'
 
 import styles from './App.css'

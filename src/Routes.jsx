@@ -5,7 +5,7 @@ import App from './components/App'
 import About from './components/About'
 import Guests from './components/Guests'
 
-export default(store) => {
+export default (store) => {
 	return (
 		<Route path="/" component={App} guestStore={store}>
 			<IndexRoute component={About}/>
