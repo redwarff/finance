@@ -1,11 +1,9 @@
 import CSSModules from 'react-css-modules'
 import {container, jumbotron, buttons} from 'bootstrap-css'
 import React from 'react'
-import ReactDOM from 'react-dom'
 import DevTool from 'mobx-react-devtools'
 import {observer} from 'mobx-react'
 
-import About from 'components/About'
 import NavigationBar from './NavigationBar'
 
 import styles from './App.css'
@@ -26,7 +24,7 @@ class App extends React.Component {
 				</div>
 
 			</div>
-		);
+		)
 	}
 }
 
