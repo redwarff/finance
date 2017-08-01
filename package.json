@@ -8,6 +8,7 @@
     "dev": "webpack-dev-server --progress --profile --colors --hot --history-api-fallback",
     "lint": "eslint --ext .js --ext .jsx src",
     "start": "start http://localhost:8080/ & npm run dev",
+    "server": "node index.js",
     "test": "jest"
   },
   "jest": {
