@@ -2,8 +2,8 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Router, browserHistory } from 'react-router'
 
-import routes from './routes'
 import GuestStore from './stores/GuestStore'
+import routes from './routes'
 
 const initialState = window.initialState || {
 	guests:[]
