@@ -18,7 +18,7 @@ class App extends React.Component {
 				<DevTool/>
 				<NavigationBar/>
 				<div className={styles.appHeading}>
-					<h1>An App</h1>
+					<h1>An Appz</h1>
 					<p>You have a total of {guestStore.guestCount} guests.</p>
 					{this.props.children}
 				</div>
