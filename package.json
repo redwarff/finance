@@ -14,7 +14,7 @@
     "local": "npm run build",
     "postlocal": "start http://localhost:3000/ && npm run server",
     "predeploy": "npm test",
-    "deploy": "npm run build && git reset && git add public/* && git commit -m 'Update public assets' && git push -u origin master",
+    "deploy": "npm run build && git reset && git add public/* && git commit -m \"Update public assets\" && git push -u origin master",
     "postdeploy": "git push heroku master && heroku open"
   },
   "jest": {
