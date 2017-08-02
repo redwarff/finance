@@ -10,7 +10,7 @@
     "start": "start http://localhost:8080/ & npm run dev",
     "server": "node index.js",
     "test": "jest",
-    "heroku-postbuild": "NODE_ENV=production && webpack -p --config ./webpack.production.config.js --progress --profile --colors",
+    "heroku-postbuild": "NODE_ENV=production && node_modules/.bin/webpack -p --config ./webpack.production.config.js --progress --profile --colors",
     "predeploy": "npm test",
     "deploy": "npm run build",
     "postdeploy": "git push heroku master && heroku open"
