@@ -15,7 +15,8 @@
     "postlocal": "start http://localhost:3000/ && npm run server",
     "predeploy": "npm test",
     "deploy": "npm run build && git reset && git add public/* && git commit -m \"Update public assets\" && git push -u origin master",
-    "postdeploy": "git push heroku master && heroku open"
+    "postdeploy": "git push heroku master && heroku open",
+    "heroku-postbuild": "NODE_ENV=production && node_modules/.bin/webpack --config webpack.production.config.js --progress --profile --colors"
   },
   "jest": {
     "modulePaths": [
@@ -53,9 +54,7 @@
     "mobx-react-devtools": "^4.2.1",
     "react": "^15.0.1",
     "react-dom": "^15.0.1",
-    "react-router": "^2.5.2"
-  },
-  "devDependencies": {
+    "react-router": "^2.5.2",
     "@types/react": "^15.6.0",
     "babel-core": "6.7.7",
     "babel-eslint": "^7.2.3",
@@ -89,5 +88,8 @@
     "url-loader": "0.5.7",
     "webpack": "^1.13.0",
     "webpack-dev-server": "1.14.1"
+  },
+  "devDependencies": {
+
   }
 }
