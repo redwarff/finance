@@ -2,7 +2,6 @@
   "name": "finance",
   "version": "0.0.1",
   "description": "Financial management system",
-  "main": "''",
   "scripts": {
     "build": "SET NODE_ENV=production && webpack --config webpack.production.config.js --progress --profile --colors",
     "dev": "webpack-dev-server --progress --profile --colors --hot --history-api-fallback",
@@ -31,8 +30,7 @@
     "node": "6.10.1"
   },
   "repository": {
-    "type": "git",
-    "url": ""
+    "type": "git"
   },
   "keywords": [
     "React",
@@ -43,10 +41,6 @@
   ],
   "author": "Dominik Smejkal",
   "license": "MIT",
-  "bugs": {
-    "url": ""
-  },
-  "homepage": "",
   "dependencies": {
     "express": "^4.15.3",
     "mobx": "^2.3.5",
