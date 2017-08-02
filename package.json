@@ -4,6 +4,7 @@
   "description": "Financial management system",
   "scripts": {
     "build": "SET NODE_ENV=production && webpack --config webpack.production.config.js --progress --profile --colors",
+    "build-linux":"NODE_ENV=production && node_modules/.bin/webpack --config webpack.production.config.js --progress --profile --colors", 
     "dev": "webpack-dev-server --progress --profile --colors --hot --history-api-fallback",
     "lint": "eslint --ext .js --ext .jsx src",
     "start": "start http://localhost:8080/ && npm run dev",
@@ -12,7 +13,7 @@
     "prelocal": "npm test",
     "local": "npm run build",
     "postlocal": "start http://localhost:3000/ && npm run server",
-    "heroku-postbuild": "NODE_ENV=production && node_modules/.bin/webpack --config webpack.production.config.js --progress --profile --colors --display-error-details"
+    "heroku-postbuild": "npm run build-linux"
   },
   "jest": {
     "modulePaths": [
