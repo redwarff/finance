@@ -1,9 +1,10 @@
 import {observable, computed} from 'mobx'
 import GuestModel from '../models/GuestModel'
-
+import * as api from 'lib/api'
 
 export default class GuestStore {
 	@observable _guests = [];
+	@observable accounts = [];
 
 	@computed get guests() {
 		return this._guests.slice()
@@ -11,6 +12,12 @@ export default class GuestStore {
 
 	@computed get guestCount() {
 		return this._guests.length
+	}
+
+	getAccounts () {
+		api.getAccounts().then(accounts => {
+			this.accounts = accounts
+		})
 	}
 
 	addGuest (guest) {

@@ -45,32 +45,32 @@ accountSchema.methods.total = function () {
 // Models
 const Account = mongoose.model('Account', accountSchema)
 
-const myAccount = new Account({
-	surplus: [
-		{
-			name: 'Bank account',
-			balance: 20000
-		},
-		{
-			name: 'Simonuv dluh',
-			balance: 20000
-		}
-	]
-})
+// const myAccount = new Account({
+// 	surplus: [
+// 		{
+// 			name: 'Bank account',
+// 			balance: 20000
+// 		},
+// 		{
+// 			name: 'Simonuv dluh',
+// 			balance: 20000
+// 		}
+// 	]
+// })
 
-myAccount.save(function (err, myAccount) {
-	if (err) return console.error(err)
-	Account.find(function (err, accounts) {
-		if (err) return console.error(err)
-		console.log(accounts)
-	})
-})
+// myAccount.save(function (err, myAccount) {
+// 	if (err) return console.error(err)
+// 	Account.find(function (err, accounts) {
+// 		if (err) return console.error(err)
+// 		console.log(accounts)
+// 	})
+// })
 
 // Express server
 app.use(express.static('public'))
 
 // Api
-app.get('/api/kittens', function (req, res) {
+app.get('/api/accounts', function (req, res) {
 	Account.find(function (err, accounts) {
 		if (err) return console.error(err)
 		res.json(accounts)

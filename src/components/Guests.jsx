@@ -11,12 +11,17 @@ export default class Guests extends React.Component {
 
 		return (
 			<div>
-				<div>The Guests :</div>
-				{guestStore.guests.map((guest) => (
-					<Guest key={guest.guest} guest={guest}/>
+				<div>Your account:</div>
+				{guestStore.accounts.map(account => (
+					<div key={account._id}>
+						{account.surplus.map(item => (
+							<div key={item._id}>
+								{`${item.name}: ${item.balance}`}
+							</div>
+						))}
+					</div>
 				)
 				)}
-				<GuestEntry guestStore={guestStore}/>
 			</div>
 		)
 	}

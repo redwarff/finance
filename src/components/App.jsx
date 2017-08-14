@@ -11,6 +11,12 @@ Object.assign(styles, jumbotron, container, buttons)
 
 @observer
 class App extends React.Component {
+	
+	componentDidMount = () => {
+		const {guestStore} = this.props.route
+		guestStore.getAccounts()
+	}
+
 	render() {
 		const {guestStore} = this.props.route
 		return (

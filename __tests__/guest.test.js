@@ -13,9 +13,9 @@ describe("Guest", function() {
   })
 
   it('renders correctly (snapshot)', () => {
-  const wrapper = shallow(<Guest guest={guest} />)
+    const wrapper = shallow(<Guest guest={guest} />)
 
-  expect(wrapper).toMatchSnapshot();
-});
+    expect(wrapper).toMatchSnapshot();
+  });
 
 })
