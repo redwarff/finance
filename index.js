@@ -3,6 +3,7 @@ const express = require('express')
 const path = require('path')
 const app = express()
 const mongoose = require('mongoose')
+const validator = require('validator')
 
 // Database connection URL
 const remoteDbUrl = process.env.PROD_MONGODB
@@ -16,42 +17,67 @@ db.once('open', function() {
 })
 
 // Schemas
-const kittySchema = mongoose.Schema({
-	name: String
+const accountSchema = mongoose.Schema({
+	surplus: [{
+		balance: Number,
+		name: String
+	}],
+	debt: [{
+		balance: Number,
+		name: String
+	}]
 })
 
-kittySchema.methods.speak = function () {
-	const greeting = this.name
-		? 'Meow name is ' + this.name
-		: 'I don\'t have a name'
-	console.log(greeting)
+accountSchema.methods.total = function () {
+	const totalSurplus = this.surplus
+		? this.surplus.reduce((acc, cur) => (
+			acc.balance + cur.balance
+		))
+		: 0
+	const totalDebt = this.debt
+		? this.debt.reduce((acc, cur) => (
+			acc.balance + cur.balance
+		))
+		: 0
+	return totalSurplus + totalDebt
 }
 
 // Models
-const Kitten = mongoose.model('Kitten', kittySchema)
+const Account = mongoose.model('Account', accountSchema)
 
-// const silence = new Kitten({ name: 'Fluffy' })
+const myAccount = new Account({
+	surplus: [
+		{
+			name: 'Bank account',
+			balance: 20000
+		},
+		{
+			name: 'Simonuv dluh',
+			balance: 20000
+		}
+	]
+})
 
-// silence.save(function (err, silence) {
-// 	if (err) return console.error(err)
-// 	silence.speak()
-// 	Kitten.find(function (err, kittens) {
-// 		if (err) return console.error(err)
-// 		console.log(kittens)
-// 	})
-// })
+myAccount.save(function (err, myAccount) {
+	if (err) return console.error(err)
+	Account.find(function (err, accounts) {
+		if (err) return console.error(err)
+		console.log(accounts)
+	})
+})
 
 // Express server
 app.use(express.static('public'))
 
 // Api
 app.get('/api/kittens', function (req, res) {
-	Kitten.find(function (err, kittens) {
+	Account.find(function (err, accounts) {
 		if (err) return console.error(err)
-		res.json(kittens)
+		res.json(accounts)
 	})
 })
 
+// Single page App
 app.get('/*', function (req, res) {
 	res.sendFile(path.join(__dirname + '/public/index.html'))
 })
