@@ -4,6 +4,9 @@ const path = require('path')
 const app = express()
 const mongoose = require('mongoose')
 const validator = require('validator')
+const cors = require('cors')
+
+app.use(cors())
 
 // Database connection URL
 const remoteDbUrl = process.env.PROD_MONGODB

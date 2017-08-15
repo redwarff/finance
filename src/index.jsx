@@ -2,12 +2,12 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Router, browserHistory } from 'react-router'
 import routes from './routes'
-import GuestStore from './stores/GuestStore'
+import AccountsStore from './stores/accounts_store'
 
 const initialState = window.initialState || {
 	guests:[]
 }
-var store = GuestStore.fromJS(initialState.guests)
+var store = AccountsStore.fromJS(initialState.guests)
 
 ReactDOM.render((
 	<Router history={browserHistory} routes={routes(store)}>

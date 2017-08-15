@@ -1,8 +1,8 @@
 import React from 'react'
 import CSSModules from 'react-css-modules'
 
-import NavItem from './NavigationItem'
-import styles from './NavigationBar.css'
+import NavItem from './navigation_item'
+import styles from './navigation_bar.css'
 
 class NavigationBar extends React.Component {
 	render() {
@@ -15,7 +15,7 @@ class NavigationBar extends React.Component {
 					<div className={styles.menu_list}>
 						<ul className={styles.nav_list}>
 							<NavItem to='/' index={true} >Home</NavItem>
-							<NavItem to='/guests'>Guests</NavItem>
+							<NavItem to='/accounts'>Accounts</NavItem>
 						</ul>
 					</div>
 				</div>
