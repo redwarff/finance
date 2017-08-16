@@ -1,26 +1,22 @@
 import React from 'react'
 import CSSModules from 'react-css-modules'
-
-import NavItem from './navigation_item'
 import styles from './navigation_bar.css'
+import { Menu, Container } from 'semantic-ui-react'
+import { Link, IndexLink, withRouter } from 'react-router'
 
-class NavigationBar extends React.Component {
+@withRouter @CSSModules(styles)
+export default class NavigationBar extends React.Component {
 	render() {
+		const { router } = this.props
 		return (
-			<nav className={styles.headernav}>
-				<div className={styles.container}>
-					<div className={styles.header}>
-						<a className={styles.brand} href="#">boilerplate</a>
-					</div>
-					<div className={styles.menu_list}>
-						<ul className={styles.nav_list}>
-							<NavItem to='/' index={true} >Home</NavItem>
-						</ul>
-					</div>
-				</div>
-			</nav>
+			<Menu size="large" compact>
+				<Menu.Item as={IndexLink} to="/" active={router.isActive('/', true)} className={styles.navLink}>
+					Home
+				</Menu.Item>
+				<Menu.Item as={Link} to="/404" active={router.isActive('/404', true)} className={styles.navLink}>
+					404
+				</Menu.Item>
+			</Menu>
 		)
 	}
 }
-
-export default CSSModules(NavigationBar, styles, {allowMultiple: true})

@@ -1,16 +1,14 @@
-import CSSModules from 'react-css-modules'
-import { container, jumbotron, buttons } from 'bootstrap-css'
 import React from 'react'
 import DevTool from 'mobx-react-devtools'
 import { observer, inject } from 'mobx-react'
+import { Container, Header, Segment } from 'semantic-ui-react'
+import CSSModules from 'react-css-modules'
 
 import NavigationBar from './navigation_bar'
-
 import styles from './application.css'
-Object.assign(styles, jumbotron, container, buttons)
 
-@inject('store') @observer
-class App extends React.Component {
+@CSSModules(styles) @inject('store') @observer
+export default class App extends React.Component {
 	
 	componentDidMount = () => {
 		const { store } = this.props
@@ -20,17 +18,22 @@ class App extends React.Component {
 	render() {
 		
 		return (
-			<div className={styles.container}>
-				<DevTool/>
-				<NavigationBar/>
-				<div className={styles.appHeading}>
-					<h1>An App</h1>
-					{this.props.children}
-				</div>
-
-			</div>
+			<Container fluid>
+				<DevTool />
+				<Container textAlign="center">
+					<NavigationBar /> 
+					<Segment.Group>
+						<Segment className={styles.headerContainer}>
+							<Header as="h1" textAlign="center" className={styles.header}>
+								An App
+							</Header>
+						</Segment>
+						<Segment>
+							{this.props.children}
+						</Segment>
+					</Segment.Group>
+				</Container>
+			</Container>
 		)
 	}
 }
-
-export default CSSModules(App, styles)

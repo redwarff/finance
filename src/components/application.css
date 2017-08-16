@@ -1,7 +1,7 @@
-.container {
-  composes: container from "bootstrap-css/lib/grid.css";
+.headerContainer {
+  padding: 1em 0em;
 }
 
-.appHeading {
-  composes: jumbotron from "bootstrap-css/lib/jumbotron.css"
+.header {
+  font-size: 3em !important;
 }
