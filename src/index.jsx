@@ -3,13 +3,16 @@ import ReactDOM from 'react-dom'
 import { Router, browserHistory } from 'react-router'
 import routes from './routes'
 import AccountsStore from './stores/accounts_store'
+import { Provider } from 'mobx-react'
 
 const initialState = window.initialState || {
-	guests:[]
+	accounts: []
 }
-var store = AccountsStore.fromJS(initialState.guests)
+var store = AccountsStore.fromJS(initialState.accounts)
 
 ReactDOM.render((
-	<Router history={browserHistory} routes={routes(store)}>
-	</Router>
+	<Provider store={store}>
+		<Router history={browserHistory} routes={routes()}>
+		</Router>
+	</Provider>
 ), document.querySelector('#root'))

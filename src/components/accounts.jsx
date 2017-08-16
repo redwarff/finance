@@ -1,16 +1,16 @@
 import React from 'react'
-import {observer} from 'mobx-react'
+import { observer, inject } from 'mobx-react'
 
-@observer
+@inject('store') @observer
 export default class Accounts extends React.Component {
 
 	render() {
-		const {accountsStore} = this.props.route
+		const { store } = this.props
 
 		return (
 			<div>
 				<div>Your account:</div>
-				{accountsStore.accounts.map(account => (
+				{store.accounts.map(account => (
 					<div key={account._id}>
 						{account.surplus.map(item => (
 							<div key={item._id}>

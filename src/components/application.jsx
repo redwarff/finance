@@ -1,24 +1,24 @@
 import CSSModules from 'react-css-modules'
-import {container, jumbotron, buttons} from 'bootstrap-css'
+import { container, jumbotron, buttons } from 'bootstrap-css'
 import React from 'react'
 import DevTool from 'mobx-react-devtools'
-import {observer} from 'mobx-react'
+import { observer, inject } from 'mobx-react'
 
 import NavigationBar from './navigation_bar'
 
 import styles from './application.css'
 Object.assign(styles, jumbotron, container, buttons)
 
-@observer
+@inject('store') @observer
 class App extends React.Component {
 	
 	componentDidMount = () => {
-		const {accountsStore} = this.props.route
-		accountsStore.getAccounts()
+		const { store } = this.props
+		store.getAccounts()
 	}
 
 	render() {
-		const {accountsStore} = this.props.route
+		
 		return (
 			<div className={styles.container}>
 				<DevTool/>

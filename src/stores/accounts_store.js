@@ -1,36 +1,31 @@
 import {observable, computed} from 'mobx'
-import GuestModel from '../models/GuestModel'
+import AccountModel from '../models/account_model'
 import * as api from 'lib/api'
 
-export default class GuestStore {
-	@observable _guests = [];
-	@observable accounts = [];
+export default class AccountsStore {
+	@observable _accounts = [];
 
-	@computed get guests() {
-		return this._guests.slice()
-	}
-
-	@computed get guestCount() {
-		return this._guests.length
+	@computed get accounts() {
+		return this._accounts.slice()
 	}
 
 	getAccounts () {
 		api.getAccounts().then(accounts => {
-			this.accounts = accounts
+			this._accounts = accounts
 		})
 	}
 
-	addGuest (guest) {
-		this._guests.push(new GuestModel(this, guest))
+	addAccount (account) {
+		this._accounts.push(new AccountModel(this, account))
 	}
 
 	toJS() {
-		return this._guests.map(guest => guest.toJS())
+		return this._accounts.map(account => account.toJS())
 	}
 
 	static fromJS(array) {
-		const store = new GuestStore()
-		store._guests = array.map(item => GuestModel.fromJS(store, item))
+		const store = new AccountsStore()
+		store._accounts = array.map(item => AccountModel.fromJS(store, item))
 		return store
 	}
 }
