@@ -2,18 +2,18 @@ import React from 'react'
 import { observer, inject } from 'mobx-react'
 import { Item, Icon, Divider } from 'semantic-ui-react'
 
-@inject('store') @observer
+@inject('accountsStore') @observer
 export default class Accounts extends React.Component {
 
 	render() {
-		const { store } = this.props
+		const { accountsStore } = this.props
 
 		return (
 			<div>
 				<div>Your account:</div>
 				<Divider />
 				<Item.Group divided>
-					{store.accounts.map(account => (
+					{accountsStore.accounts.map(account => (
 						<Item key={account._id}>
 							<Item.Content>
 								<Item.Group>

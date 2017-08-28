@@ -1,0 +1,12 @@
+.container {
+  width: 450px;
+}
+
+.centered {
+  display: flex;
+  justify-content: center;
+}
+
+.labelLeft > label {
+  text-align: left;
+}

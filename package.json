@@ -9,10 +9,12 @@
     "lint": "eslint --ext .js --ext .jsx src",
     "start": "start http://localhost:8080/ && npm run dev",
     "server": "node index.js",
+    "server-dev": "nodemon index.js",
     "test": "jest",
     "prelocal": "npm test",
     "local": "npm run build",
     "postlocal": "start http://localhost:3000/ && start cmd.exe @cmd /k npm run db && npm run server",
+    "offline": "start cmd.exe @cmd /k npm run db && start cmd.exe @cmd /k npm run server-dev && npm start",
     "heroku-postbuild": "npm run build-linux",
     "db": "mongod"
   },
@@ -51,7 +53,7 @@
     "babel-preset-react": "6.5.0",
     "babel-preset-stage-1": "^6.5.0",
     "babel-preset-stage-2": "^6.11.0",
-    "bootstrap-css": "^3.0.0",
+    "body-parser": "^1.17.2",
     "copy-webpack-plugin": "^3.0.1",
     "cors": "^2.8.4",
     "css-loader": "^0.23.1",
@@ -61,6 +63,7 @@
     "eslint": "^4.3.0",
     "eslint-plugin-react": "^7.1.0",
     "express": "^4.15.3",
+    "express-validator": "^4.0.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "0.8.5",
     "jest": "^20.0.4",
@@ -83,7 +86,6 @@
     "semantic-ui-react": "^0.71.4",
     "style-loader": "0.13.1",
     "url-loader": "0.5.7",
-    "validator": "^8.0.0",
     "webpack": "^1.13.0",
     "webpack-dev-server": "1.14.1"
   }

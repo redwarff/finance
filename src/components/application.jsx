@@ -7,12 +7,12 @@ import CSSModules from 'react-css-modules'
 import NavigationBar from './navigation_bar'
 import styles from './application.css'
 
-@CSSModules(styles) @inject('store') @observer
+@CSSModules(styles) @inject('accountsStore') @observer
 export default class App extends React.Component {
 	
 	componentDidMount = () => {
-		const { store } = this.props
-		store.getAccounts()
+		const { accountsStore } = this.props
+		accountsStore.getAccounts()
 	}
 
 	render() {
@@ -25,7 +25,7 @@ export default class App extends React.Component {
 					<Segment.Group>
 						<Segment className={styles.headerContainer}>
 							<Header as="h1" textAlign="center" className={styles.header}>
-								An App
+								An app
 							</Header>
 						</Segment>
 						<Segment>

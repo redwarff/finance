@@ -37,6 +37,7 @@
             "error",
             "never"
         ],
-        "strict": 0
+        "strict": 0,
+        "react/prop-types": 0
     }
 }
