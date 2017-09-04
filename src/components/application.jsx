@@ -7,13 +7,8 @@ import CSSModules from 'react-css-modules'
 import NavigationBar from './navigation_bar'
 import styles from './application.css'
 
-@CSSModules(styles) @inject('accountsStore') @observer
+@CSSModules(styles) @observer
 export default class App extends React.Component {
-	
-	componentDidMount = () => {
-		const { accountsStore } = this.props
-		accountsStore.getAccounts()
-	}
 
 	render() {
 		

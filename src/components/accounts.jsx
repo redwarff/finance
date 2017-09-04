@@ -5,6 +5,11 @@ import { Item, Icon, Divider } from 'semantic-ui-react'
 @inject('accountsStore') @observer
 export default class Accounts extends React.Component {
 
+	componentDidMount = () => {
+		const { accountsStore } = this.props
+		accountsStore.getAccounts()
+	}
+
 	render() {
 		const { accountsStore } = this.props
 

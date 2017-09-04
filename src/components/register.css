@@ -7,6 +7,7 @@
   justify-content: center;
 }
 
-.labelLeft > label {
-  text-align: left;
+.label {
+  margin-top: 0 !important;
+  margin-bottom: 1em !important;
 }

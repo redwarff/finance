@@ -3,15 +3,23 @@ import AccountModel from '../models/account_model'
 import * as api from 'lib/api'
 
 export default class AccountsStore {
-	@observable _accounts = [];
+	@observable _accounts = []
 
 	@computed get accounts() {
 		return this._accounts.slice()
 	}
 
+	clear () {
+		this._accounts = []
+	}
+
 	getAccounts () {
 		api.getAccounts().then(accounts => {
-			this._accounts = accounts
+			if (accounts.errors) {
+				console.log(accounts.errors)
+			} else {
+				this._accounts = accounts
+			}
 		})
 	}
 

@@ -6,6 +6,7 @@ import AccountsStore from './stores/accounts_store'
 import UserStore from './stores/user_store.js'
 import FormStore from './stores/form_store.js'
 import { Provider } from 'mobx-react'
+import 'semantic-ui-css/semantic.min.css'
 
 const initialState = window.initialState || {
 	accounts: []

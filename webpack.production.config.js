@@ -18,10 +18,17 @@ module.exports = {
 		extensions: ['', '.js', '.jsx']
 	},
 	module: {
-		loaders: loaders.concat([{
-			test: /\.css$/,
-			loader: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]')
-		}])
+		loaders: loaders.concat([
+			{
+				test: /semantic\.min\.css$/,
+				loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
+	 		},
+			{
+				test: /\.css$/,
+				exclude: [/semantic\.min/],
+				loader: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]')
+			}
+		])
 	},
 	plugins: [
 		new CopyWebpackPlugin([{

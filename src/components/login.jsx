@@ -2,12 +2,25 @@ import React from 'react'
 import { Header, Segment, Form, Button, Message } from 'semantic-ui-react'
 import CSSModules from 'react-css-modules'
 import styles from './login.css'
-import { Link } from 'react-router'
+import { Link, withRouter } from 'react-router'
+import { observer, inject } from 'mobx-react'
 
-@CSSModules(styles)
+@withRouter @CSSModules(styles) @inject('userStore', 'formStore') @observer
 export default class Login extends React.Component {
 	
+	onSubmit = () => {
+		const { formStore, userStore, router } = this.props
+		userStore.loginUser(formStore.getField('email').value, formStore.getField('password').value)
+			.then(body => !body.errors && router.push('/'))
+	}
+
+	componentDidMount () {
+		this.props.formStore.initializeFromNames([ 'email', 'password' ])
+		this.props.userStore.resetErrors()
+	}
+
 	render() {
+		const { userStore, formStore } = this.props
 		
 		return (
 			<div className={styles.centered}>
@@ -15,23 +28,32 @@ export default class Login extends React.Component {
 					<Header as="h2">
 						Log in
 					</Header>
-					<Form size='large'>
+					<Form size='large' error={userStore.validationErrors.login}>
 						<Segment stacked>
 							<Form.Input
+								value={formStore.getField('email').value}
+								onChange={(e, { value }) => formStore.changeField('email', value)}
 								fluid
 								icon='user'
 								iconPosition='left'
 								placeholder='E-mail address'
 							/>
 							<Form.Input
+								value={formStore.getField('password').value}
+								onChange={(e, { value }) => formStore.changeField('password', value)}
 								fluid
 								icon='lock'
 								iconPosition='left'
 								placeholder='Password'
 								type='password'
 							/>
+							{userStore.validationErrors.login &&
+								<Message error>
+									{userStore.validationErrors.login}
+								</Message>
+							}
 
-							<Button color='teal' fluid size='large' type="submit" onClick={() => console.log('lgging')}>Login</Button>
+							<Button color='teal' fluid size='large' type="submit" onClick={this.onSubmit}>Login</Button>
 						</Segment>
 					</Form>
 					<Message>

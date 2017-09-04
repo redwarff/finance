@@ -1,16 +1,17 @@
 import React from 'react'
 import { inject, observer } from 'mobx-react'
-import { Header, Segment, Form, Button, Message } from 'semantic-ui-react'
+import { Header, Segment, Form, Button, Label } from 'semantic-ui-react'
 import CSSModules from 'react-css-modules'
 import styles from './register.css'
-import { Link } from 'react-router'
+import { withRouter } from 'react-router'
 
-@CSSModules(styles) @inject('userStore', 'formStore') @observer
+@withRouter @CSSModules(styles) @inject('userStore', 'formStore') @observer
 export default class Register extends React.Component {
 
 	onSubmit = () => {
-		const { formStore } = this.props
-		this.props.userStore.registerUser(formStore.getField('email').value, formStore.getField('password').value)
+		const { formStore, userStore, router } = this.props
+		userStore.registerUser(formStore.getField('email').value, formStore.getField('password').value, formStore.getField('passwordConfirm').value)
+			.then(body => !body.errors && router.push('/'))
 	}
 
 	componentDidMount () {
@@ -18,7 +19,7 @@ export default class Register extends React.Component {
 	}
 
 	render() {
-		const { formStore } = this.props
+		const { formStore, userStore } = this.props
 		
 		return (
 			<div className={styles.centered}>
@@ -27,9 +28,8 @@ export default class Register extends React.Component {
 						Register
 					</Header>
 					<Form size='large'>
-						<Segment stacked>
+						<Segment stacked textAlign="left">
 							<Form.Input
-								className={styles.labelLeft}
 								value={formStore.getField('email').value}
 								onChange={(e, { value }) => formStore.changeField('email', value)}
 								fluid
@@ -37,9 +37,14 @@ export default class Register extends React.Component {
 								icon='user'
 								iconPosition='left'
 								placeholder='E-mail address'
+								error={userStore.validationErrors.email}
 							/>
+							{userStore.validationErrors.email && 
+								<Label basic color="red" pointing className={styles.label}>
+									{userStore.validationErrors.email.msg}
+								</Label>
+							}
 							<Form.Input
-								className={styles.labelLeft}
 								value={formStore.getField('password').value}
 								onChange={(e, { value }) => formStore.changeField('password', value)}
 								fluid
@@ -48,9 +53,14 @@ export default class Register extends React.Component {
 								iconPosition='left'
 								placeholder='Password'
 								type='password'
+								error={userStore.validationErrors.password}
 							/>
+							{userStore.validationErrors.password && 
+								<Label basic color="red" pointing className={styles.label}>
+									{userStore.validationErrors.password.msg}
+								</Label>
+							}
 							<Form.Input
-								className={styles.labelLeft}
 								value={formStore.getField('passwordConfirm').value}
 								onChange={(e, { value }) => formStore.changeField('passwordConfirm', value)}
 								fluid
@@ -59,14 +69,17 @@ export default class Register extends React.Component {
 								iconPosition='left'
 								placeholder='Repeat password'
 								type='password'
+								error={userStore.validationErrors.passwordConfirm}
 							/>
+							{userStore.validationErrors.passwordConfirm && 
+								<Label basic color="red" pointing className={styles.label}>
+									{userStore.validationErrors.passwordConfirm.msg}
+								</Label>
+							}
 
-							<Button color='teal' fluid size='large' type="submit" onClick={this.onSubmit}>Login</Button>
+							<Button color='teal' fluid size='large' type="submit" onClick={this.onSubmit}>Register</Button>
 						</Segment>
 					</Form>
-					<Message>
-						New to us? <Link to="/register"> Sign Up </Link>
-					</Message>
 				</div>
 			</div>
 		)

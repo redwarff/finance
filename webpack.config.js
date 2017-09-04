@@ -21,13 +21,20 @@ module.exports = {
 		extensions: ['', '.js', '.jsx']
 	},
 	module: {
-		loaders: loaders.concat([{
-			test: /\.css$/,
-			loaders: [
-				'style?sourceMap',
-				'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]'
-			]
-		}])
+		loaders: loaders.concat([
+			{
+				test: /semantic\.min\.css$/,
+				loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
+	 		},
+			{
+				test: /.css$/,
+				exclude: [/semantic\.min/],
+				loaders: [
+					'style?sourceMap',
+					'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]'
+				]
+			}
+		])
 	},
 	devServer: {
 		contentBase: "./public",
@@ -39,6 +46,7 @@ module.exports = {
 		new webpack.NoErrorsPlugin(),
 		new CopyWebpackPlugin([{
 			from: './src/index.html'
-		}])
+		}]),
+		new ExtractTextPlugin('styles.css')
 	]
 };
